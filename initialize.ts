@@ -24,6 +24,7 @@ function easeInOutQuad(t: number): number {
         2 * t * (2 - t) - 1
 }
 
+/* Initialization */
 const container: HTMLElement = document.getElementById('container')!
 const canvas: CanvasRenderingContext2D = (<HTMLCanvasElement>document.getElementById('canvas')).getContext('2d')!
 

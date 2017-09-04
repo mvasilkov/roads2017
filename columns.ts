@@ -22,3 +22,13 @@ function makeColumns(): [LL, LL] {
 }
 
 let [colBegin, colEnd] = makeColumns()
+
+function getColumn(x: number): LL {
+    let col = colBegin
+    let pos = -colOffset
+    while (col != colEnd) {
+        if ((pos += COLUMN_WIDTH) > x) return col
+        col = col.next!
+    }
+    return colEnd
+}

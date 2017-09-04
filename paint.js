@@ -24,15 +24,16 @@ function paintEasing(x, a, b) {
     canvas.stroke();
 }
 function paintColumns(x) {
-    var c = colBegin;
+    var col = colBegin;
     while (x - HALF_COLUMN_WIDTH < CANVAS_WIDTH) {
-        paintColumn(x, c.height);
-        paintEasing(x, c.height, c.next.height);
-        c = c.next;
+        paintColumn(x, col.height);
+        paintEasing(x, col.height, col.next.height);
+        col = col.next;
         x += COLUMN_WIDTH;
     }
 }
 function paint(t) {
     canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGTH);
     paintColumns(-(colOffset + t * scrollSpeed));
+    paintPlayer(t);
 }

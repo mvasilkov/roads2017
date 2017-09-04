@@ -1,15 +1,16 @@
 "use strict";
 /// <reference path="roads.d.ts" />
 var colOffset = -HALF_COLUMN_WIDTH;
-var scrollSpeed = 4;
+var scrollSpeed = 0;
 var newHeight = STARTING_HEIGHT;
 function update() {
-    if ((colOffset += scrollSpeed) >= HALF_COLUMN_WIDTH) {
+    if ((colOffset += scrollSpeed) >= COLUMN_WIDTH) {
         colOffset -= COLUMN_WIDTH;
         colEnd = colBegin;
         colBegin = colBegin.next;
         colEnd.height = newHeight;
     }
+    updatePlayer();
 }
 var then = -1;
 var t = 0;

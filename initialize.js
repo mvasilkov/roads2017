@@ -20,6 +20,7 @@ function easeInOutQuad(t) {
         2 * t * t :
         2 * t * (2 - t) - 1;
 }
+/* Initialization */
 var container = document.getElementById('container');
 var canvas = document.getElementById('canvas').getContext('2d');
 var cscale = 1;

@@ -16,3 +16,13 @@ function makeColumns() {
     return [head, tail];
 }
 var _a = makeColumns(), colBegin = _a[0], colEnd = _a[1];
+function getColumn(x) {
+    var col = colBegin;
+    var pos = -colOffset;
+    while (col != colEnd) {
+        if ((pos += COLUMN_WIDTH) > x)
+            return col;
+        col = col.next;
+    }
+    return colEnd;
+}

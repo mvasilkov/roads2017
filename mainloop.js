@@ -1,7 +1,7 @@
 "use strict";
 /// <reference path="roads.d.ts" />
 var colOffset = -HALF_COLUMN_WIDTH;
-var scrollSpeed = 0;
+var scrollSpeed = 20;
 var newHeight = STARTING_HEIGHT;
 function update() {
     if ((colOffset += scrollSpeed) >= COLUMN_WIDTH) {
@@ -17,7 +17,7 @@ var t = 0;
 function mainloop(now) {
     requestAnimationFrame(mainloop);
     if (pointer.dragging) {
-        newHeight = CANVAS_HEIGTH - pointer.y;
+        newHeight = clamp(CANVAS_HEIGTH - pointer.y, 20, CANVAS_HEIGTH - 60);
     }
     if (then == -1) {
         then = now;

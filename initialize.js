@@ -20,6 +20,9 @@ function easeInOutQuad(t) {
         2 * t * t :
         2 * t * (2 - t) - 1;
 }
+function clamp(x, a, b) {
+    return (x < a) ? a : (x > b) ? b : x;
+}
 /* Initialization */
 var container = document.getElementById('container');
 var canvas = document.getElementById('canvas').getContext('2d');

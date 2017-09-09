@@ -1,7 +1,7 @@
 /// <reference path="roads.d.ts" />
 
 let colOffset = -HALF_COLUMN_WIDTH
-let scrollSpeed = 0
+let scrollSpeed = 20
 let newHeight = STARTING_HEIGHT
 
 function update() {
@@ -22,7 +22,7 @@ function mainloop(now: number) {
     requestAnimationFrame(mainloop)
 
     if (pointer.dragging) {
-        newHeight = CANVAS_HEIGTH - pointer.y
+        newHeight = clamp(CANVAS_HEIGTH - pointer.y, 20, CANVAS_HEIGTH - 60)
     }
 
     if (then == -1) {

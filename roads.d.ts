@@ -6,5 +6,6 @@
 /// <reference path="columns.ts" />
 /// <reference path="player.ts" />
 /// <reference path="paint.ts" />
+/// <reference path="danger.ts" />
 /// <reference path="mainloop.ts" />
 /// <reference path="run.ts" />

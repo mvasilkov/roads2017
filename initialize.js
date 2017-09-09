@@ -25,5 +25,37 @@ function clamp(x, a, b) {
 }
 /* Initialization */
 var container = document.getElementById('container');
-var canvas = document.getElementById('canvas').getContext('2d');
+var hcanvas = document.getElementById('canvas');
+var canvas = hcanvas.getContext('2d');
+/* Handle resize */
+var aspect = 16 / 9;
 var cscale = 1;
+var transformProperty = 'transform';
+if (!(transformProperty in container.style)) {
+    transformProperty = 'webkitTransform';
+}
+function setSize(x, property, value) {
+    x.style[property] = value + "px";
+}
+function handleResize() {
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    if (w / h > aspect)
+        w = h * aspect;
+    else
+        h = w / aspect;
+    cscale = CANVAS_WIDTH / w;
+    setSize(container, 'width', w);
+    setSize(container, 'height', h);
+    setSize(container, 'left', 0.5 * (window.innerWidth - w));
+    setSize(container, 'top', 0.5 * (window.innerHeight - h));
+    var scale = 0.5 * w / CANVAS_WIDTH;
+    var scale3d = "scale3d(" + scale + "," + scale + ",1)";
+    startScreen.style[transformProperty] = scale3d;
+    endScreen.style[transformProperty] = scale3d;
+}
+window.addEventListener('resize', handleResize);
+window.addEventListener('orientationchange', handleResize);
+hcanvas.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+});

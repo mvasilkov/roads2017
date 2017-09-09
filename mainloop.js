@@ -30,5 +30,3 @@ function mainloop(now) {
     }
     paint(t / T + 1);
 }
-initializeCanvas();
-requestAnimationFrame(mainloop);

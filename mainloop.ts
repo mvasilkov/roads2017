@@ -38,6 +38,3 @@ function mainloop(now: number) {
 
     paint(t / T + 1)
 }
-
-initializeCanvas()
-requestAnimationFrame(mainloop)

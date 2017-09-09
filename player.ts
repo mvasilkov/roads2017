@@ -7,7 +7,7 @@ const MAXIMUM_Y_VELOCITY = 30
 const IMPACT_FRICTION = 0.5
 const G = -1
 
-let x = CANVAS_WIDTH * 0.25
+const x = CANVAS_WIDTH * 0.25
 let y = CANVAS_HEIGTH * 0.75
 let vy = 0
 
@@ -19,11 +19,33 @@ let yTouch = 0
 let angle = 0
 let targetAngle = 0
 
+let isAlive = false
+
+function initializePlayer() {
+    y = CANVAS_HEIGTH - 60
+    vy = 0
+    normal.set(0, 1)
+    angle = targetAngle = 0
+    isAlive = true
+}
+
+function hasCollided(danger: Danger): boolean {
+    const { a, b, a2, b2 } = danger
+    return (a != -1 && y + R >= a && y - R < a + b) || (a2 != -1 && y + R >= a2 && y - R < a2 + b2)
+}
+
 function updatePlayer() {
+    if (!isAlive) return
+
     y += vy
     vy += G
 
     const col = getColumn(x)
+    if (hasCollided(col.danger)) {
+        isAlive = false
+        gameover()
+    }
+
     const t = (colOffset + HALF_COLUMN_WIDTH) / COLUMN_WIDTH
     a.set(t * COLUMN_WIDTH, yTouch = lerp(col.height, col.next!.height, easeInOutQuad(t)))
 
@@ -50,6 +72,8 @@ function updatePlayer() {
 }
 
 function paintPlayer(t: number) {
+    if (!isAlive) return
+
     targetAngle = Math.atan2(normal.y, normal.x) - Math.PI * 0.5
     angle += clamp(targetAngle - angle, -Math.PI * 0.05, Math.PI * 0.05)
 

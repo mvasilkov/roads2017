@@ -12,6 +12,7 @@ const T = 0.02
 
 /* Other constants */
 const HALF_COLUMN_WIDTH = COLUMN_WIDTH * 0.5
+const IMPENDING_DOOM_WIDTH = COLUMN_WIDTH / 3
 
 /* Utility functions */
 function lerp(a: number, b: number, t: number): number {

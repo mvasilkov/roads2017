@@ -1,14 +1,19 @@
 "use strict";
 /// <reference path="roads.d.ts" />
+var NO_DANGER = {
+    a: -1, b: -1, a2: -1, b2: -1
+};
 function makeColumns() {
     var head = {
         height: STARTING_HEIGHT,
+        danger: NO_DANGER,
         next: null,
     };
     var tail = head;
     for (var i = COLUMN_COUNT - 1; i; --i) {
         tail = tail.next = {
             height: STARTING_HEIGHT,
+            danger: NO_DANGER,
             next: null,
         };
     }

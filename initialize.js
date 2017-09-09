@@ -11,6 +11,7 @@ var EASING_STEP = Math.pow(EASING_POINTS, -1);
 var T = 0.02;
 /* Other constants */
 var HALF_COLUMN_WIDTH = COLUMN_WIDTH * 0.5;
+var IMPENDING_DOOM_WIDTH = COLUMN_WIDTH / 3;
 /* Utility functions */
 function lerp(a, b, t) {
     return a * (1 - t) + b * t;

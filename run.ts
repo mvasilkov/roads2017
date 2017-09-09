@@ -46,9 +46,14 @@ function initMainMenu() {
     if (music) music.play()
 }
 
+function init() {
+    initializePlayer()
+    initializeDanger()
+}
+
 handleResize()
 
 initMainMenu()
 initializeCanvas()
 
-// requestAnimationFrame(mainloop)
+requestAnimationFrame(mainloop)

@@ -20,7 +20,7 @@ resetButton.addEventListener('touchstart', reset)
 
 function cancel(event: Event) {
     const target = <HTMLElement>event.target
-    if (target.tagName == 'INPUT' || target.tagName == 'LABEL') {
+    if (target.tagName == 'INPUT' || target.tagName == 'LABEL' || target.id == 'start' || target.id == 'reset') {
         event.stopPropagation()
     }
 }
@@ -33,12 +33,18 @@ function start() {
     if ((isMobile || cscale > 1) && document.body.requestFullscreen) {
         document.body.requestFullscreen()
     }
+
+    init()
 }
 
 function gameover() {
     endScreen.style.display = 'block'
 
     aa.play('win')
+
+    if (dangerTimer) {
+        clearTimeout(dangerTimer)
+    }
 }
 
 function reset() {
@@ -48,5 +54,5 @@ function reset() {
 
     pointer.dragging = false
 
-    // init()
+    init()
 }

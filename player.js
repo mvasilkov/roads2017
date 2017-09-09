@@ -15,10 +15,28 @@ var b = new Vec2;
 var yTouch = 0;
 var angle = 0;
 var targetAngle = 0;
+var isAlive = false;
+function initializePlayer() {
+    y = CANVAS_HEIGTH - 60;
+    vy = 0;
+    normal.set(0, 1);
+    angle = targetAngle = 0;
+    isAlive = true;
+}
+function hasCollided(danger) {
+    var a = danger.a, b = danger.b, a2 = danger.a2, b2 = danger.b2;
+    return (a != -1 && y + R >= a && y - R < a + b) || (a2 != -1 && y + R >= a2 && y - R < a2 + b2);
+}
 function updatePlayer() {
+    if (!isAlive)
+        return;
     y += vy;
     vy += G;
     var col = getColumn(x);
+    if (hasCollided(col.danger)) {
+        isAlive = false;
+        gameover();
+    }
     var t = (colOffset + HALF_COLUMN_WIDTH) / COLUMN_WIDTH;
     a.set(t * COLUMN_WIDTH, yTouch = lerp(col.height, col.next.height, easeInOutQuad(t)));
     if (y - R_CONTACT < yTouch) {
@@ -42,6 +60,8 @@ function updatePlayer() {
     }
 }
 function paintPlayer(t) {
+    if (!isAlive)
+        return;
     targetAngle = Math.atan2(normal.y, normal.x) - Math.PI * 0.5;
     angle += clamp(targetAngle - angle, -Math.PI * 0.05, Math.PI * 0.05);
     canvas.save();

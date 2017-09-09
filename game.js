@@ -15,7 +15,7 @@ resetButton.addEventListener('mousedown', reset);
 resetButton.addEventListener('touchstart', reset);
 function cancel(event) {
     var target = event.target;
-    if (target.tagName == 'INPUT' || target.tagName == 'LABEL') {
+    if (target.tagName == 'INPUT' || target.tagName == 'LABEL' || target.id == 'start' || target.id == 'reset') {
         event.stopPropagation();
     }
 }
@@ -25,14 +25,18 @@ function start() {
     if ((isMobile || cscale > 1) && document.body.requestFullscreen) {
         document.body.requestFullscreen();
     }
+    init();
 }
 function gameover() {
     endScreen.style.display = 'block';
     aa.play('win');
+    if (dangerTimer) {
+        clearTimeout(dangerTimer);
+    }
 }
 function reset() {
     endScreen.style.display = 'none';
     aa.play('new');
     pointer.dragging = false;
-    // init()
+    init();
 }

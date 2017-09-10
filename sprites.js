@@ -12,9 +12,62 @@ var grass = [
     '010       00    ',
     ' 0              ',
 ];
+var car = [
+    '    0000000000      ',
+    '   000101100110     ',
+    '  00000011110010    ',
+    ' 001000011111000000 ',
+    '00221000011110001110',
+    '02222122101110002220',
+    '02222220010000002220',
+    ' 000002222222210000 ',
+    '      022222210     ',
+    '       0000000      ',
+];
+var wheel0 = [
+    '  0000  ',
+    ' 011110 ',
+    '01111110',
+    '00000000',
+    '00000000',
+    '02111120',
+    ' 022220 ',
+    '  0000  ',
+];
+var wheel1 = [
+    '   000  ',
+    '  01110 ',
+    ' 0001110',
+    '01000110',
+    '01100010',
+    '0211000 ',
+    ' 02220  ',
+    '  000   ',
+];
+var wheel2 = [
+    '  0000  ',
+    ' 010010 ',
+    '01100110',
+    '01100110',
+    '01100110',
+    '02100120',
+    ' 020020 ',
+    '  0000  ',
+];
+var wheel3 = [
+    '  000   ',
+    ' 01110  ',
+    '0111000 ',
+    '01100010',
+    '01000110',
+    ' 0001120',
+    '  02220 ',
+    '   000  ',
+];
 var GRASS_COLOR = ['#000', '#00E700', '#00C700', '#008200'];
 var GROUND_COLOR = ['#422021', '#844121', '#A56121'];
 var BRICK_COLOR = ['#000', '#A40000', '#CC0000', '#EF2929'];
+var CAR_COLOR = ['#000', '#FFF', '#FF0080'];
 function makeSprite(width, height, callback) {
     var hcanvas = document.createElement('canvas');
     hcanvas.width = width;
@@ -29,6 +82,21 @@ function makeSprite(width, height, callback) {
     document.body.appendChild(hcanvas)
     /* End debugging */
     return hcanvas;
+}
+function makeSprite2(width, height, bitmap, colors) {
+    return makeSprite(width, height, function (canvas) {
+        canvas.scale(3, 3);
+        width /= 3;
+        height /= 3;
+        for (var i = 0; i < height; ++i) {
+            for (var j = 0; j < width; ++j) {
+                if (bitmap[i][j] == ' ')
+                    continue;
+                canvas.fillStyle = colors[+bitmap[i][j]];
+                canvas.fillRect(j, height - i - 1, 1, 1);
+            }
+        }
+    });
 }
 var columnSprite = makeSprite(COLUMN_WIDTH, CANVAS_HEIGTH, function (canvas) {
     canvas.scale(3, 3);
@@ -78,3 +146,11 @@ var dangerPattern = canvas.createPattern(makeSprite(COLUMN_WIDTH, COLUMN_WIDTH *
     canvas.fillRect(9, 0, 7, 1);
     canvas.fillRect(1, 4, 14, 1);
 }), 'repeat');
+var carSprite = makeSprite2(60, 30, car, CAR_COLOR);
+var wheelSprites = [
+    makeSprite2(24, 24, wheel0, CAR_COLOR),
+    makeSprite2(24, 24, wheel1, CAR_COLOR),
+    makeSprite2(24, 24, wheel2, CAR_COLOR),
+    makeSprite2(24, 24, wheel3, CAR_COLOR),
+];
+wheelSprites.push(wheelSprites[0]);

@@ -13,9 +13,67 @@ const grass = [
     ' 0              ',
 ]
 
+const car = [
+    '    0000000000      ',
+    '   000101100110     ',
+    '  00000011110010    ',
+    ' 001000011111000000 ',
+    '00221000011110001110',
+    '02222122101110002220',
+    '02222220010000002220',
+    ' 000002222222210000 ',
+    '      022222210     ',
+    '       0000000      ',
+]
+
+const wheel0 = [
+    '  0000  ',
+    ' 011110 ',
+    '01111110',
+    '00000000',
+    '00000000',
+    '02111120',
+    ' 022220 ',
+    '  0000  ',
+]
+
+const wheel1 = [
+    '   000  ',
+    '  01110 ',
+    ' 0001110',
+    '01000110',
+    '01100010',
+    '0211000 ',
+    ' 02220  ',
+    '  000   ',
+]
+
+const wheel2 = [
+    '  0000  ',
+    ' 010010 ',
+    '01100110',
+    '01100110',
+    '01100110',
+    '02100120',
+    ' 020020 ',
+    '  0000  ',
+]
+
+const wheel3 = [
+    '  000   ',
+    ' 01110  ',
+    '0111000 ',
+    '01100010',
+    '01000110',
+    ' 0001120',
+    '  02220 ',
+    '   000  ',
+]
+
 const GRASS_COLOR = ['#000', '#00E700', '#00C700', '#008200']
 const GROUND_COLOR = ['#422021', '#844121', '#A56121']
 const BRICK_COLOR = ['#000', '#A40000', '#CC0000', '#EF2929']
+const CAR_COLOR = ['#000', '#FFF', '#FF0080']
 
 function makeSprite(width: number, height: number, callback: (canvas: CanvasRenderingContext2D) => void): HTMLCanvasElement {
     const hcanvas = document.createElement('canvas')
@@ -33,6 +91,22 @@ function makeSprite(width: number, height: number, callback: (canvas: CanvasRend
     /* End debugging */
 
     return hcanvas
+}
+
+function makeSprite2(width: number, height: number, bitmap: string[], colors: string[]): HTMLCanvasElement {
+    return makeSprite(width, height, canvas => {
+        canvas.scale(3, 3)
+        width /= 3
+        height /= 3
+
+        for (let i = 0; i < height; ++i) {
+            for (let j = 0; j < width; ++j) {
+                if (bitmap[i][j] == ' ') continue
+                canvas.fillStyle = colors[+bitmap[i][j]]
+                canvas.fillRect(j, height - i - 1, 1, 1)
+            }
+        }
+    })
 }
 
 const columnSprite = makeSprite(COLUMN_WIDTH, CANVAS_HEIGTH, canvas => {
@@ -58,6 +132,7 @@ const columnSprite = makeSprite(COLUMN_WIDTH, CANVAS_HEIGTH, canvas => {
     canvas.fillRect(1, 1, 14, 1)
     canvas.fillStyle = GRASS_COLOR[1]
     canvas.fillRect(0, 2, 16, 1)
+
     for (let i = 0; i < 10; ++i) {
         for (let j = 0; j < 16; ++j) {
             if (grass[i][j] == ' ') continue
@@ -89,3 +164,13 @@ const dangerPattern = canvas.createPattern(makeSprite(COLUMN_WIDTH, COLUMN_WIDTH
     canvas.fillRect(9, 0, 7, 1)
     canvas.fillRect(1, 4, 14, 1)
 }), 'repeat')
+
+const carSprite = makeSprite2(60, 30, car, CAR_COLOR)
+
+const wheelSprites = [
+    makeSprite2(24, 24, wheel0, CAR_COLOR),
+    makeSprite2(24, 24, wheel1, CAR_COLOR),
+    makeSprite2(24, 24, wheel2, CAR_COLOR),
+    makeSprite2(24, 24, wheel3, CAR_COLOR),
+]
+wheelSprites.push(wheelSprites[0])

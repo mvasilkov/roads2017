@@ -72,9 +72,9 @@ function updatePlayer() {
         else if (vy < 0) {
             vy *= -IMPACT_FRICTION
         }
-        if (Math.abs(vy) < MINIMUM_Y_VELOCITY) {
-            vy = 0
-        }
+        // if (Math.abs(vy) < MINIMUM_Y_VELOCITY) {
+        //     vy = 0
+        // }
     }
 
     distance += 4 * T * (scrollSpeed + scrollAccel)
@@ -83,6 +83,8 @@ function updatePlayer() {
 function formatDistance(distance: number): string {
     return distance < 1000 ? `${Math.floor(distance)} m` : `${(distance * 0.001).toFixed(1)} km`
 }
+
+let wn = 0
 
 function paintPlayer(t: number) {
     if (!isAlive) return
@@ -94,8 +96,15 @@ function paintPlayer(t: number) {
     canvas.save()
     canvas.translate(x + scrollAccel * 20, y + (vy < 0 ? vy - G : vy) * t)
     canvas.rotate(angle)
-    canvas.fillStyle = '#CDDC39'
-    canvas.fillRect(-30, -20, 60, 40)
+
+    // canvas.fillStyle = '#CDDC39'
+    // canvas.fillRect(-30, -20, 60, 40)
+
+    wn = (wn + 1) % 4
+
+    canvas.drawImage(carSprite, -33, 0)
+    canvas.drawImage(wheelSprites[wn], -36, -21)
+    canvas.drawImage(wheelSprites[wn + 1], 9, -21)
     canvas.restore()
 
     canvas.save()

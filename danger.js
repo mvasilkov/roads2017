@@ -1,7 +1,7 @@
 "use strict";
 /// <reference path="roads.d.ts" />
-var BEFORE_DANGER = 960;
-var DANGER_DURATION = 960;
+var BEFORE_DANGER = 660;
+var DANGER_DURATION = 940;
 var DANGER_PAUSE_EASY = 2400;
 var DANGER_PAUSE_HARD = 250;
 var DANGER_TABLE = [
@@ -15,6 +15,8 @@ var DANGER_TABLE = [
     { a: 320, b: 220, a2: -1, b2: -1 },
     { a: 0, b: 100, a2: 440, b2: 100 },
     { a: 110, b: 100, a2: 330, b2: 100 },
+    { a: 0, b: 100, a2: 220, b2: 100 },
+    { a: 220, b: 100, a2: 440, b2: 100 },
     { a: 0, b: 144, a2: 396, b2: 144 },
 ];
 var nextDanger = NO_DANGER;
@@ -23,7 +25,7 @@ var dangerTimer = NaN;
 var dangerPause = DANGER_PAUSE_EASY;
 function initializeDanger() {
     var col = colBegin;
-    for (var i = 0; i < COLUMN_COUNT; ++i) {
+    for (var i = COLUMN_COUNT; i; --i) {
         col.danger = NO_DANGER;
         col = col.next;
     }
@@ -37,7 +39,7 @@ function scheduleDanger() {
 }
 function dangerBegin() {
     doDanger = true;
-    dangerTimer = setTimeout(dangerEnd, DANGER_DURATION * (0.9 + Math.random() * 0.3));
+    dangerTimer = setTimeout(dangerEnd, DANGER_DURATION * (0.9 + Math.random() * 0.2));
 }
 function dangerEnd() {
     doDanger = false;

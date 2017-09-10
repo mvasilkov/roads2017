@@ -2,15 +2,21 @@
 
 let colOffset = -HALF_COLUMN_WIDTH
 let scrollSpeed = 20
+let scrollAccel = 0
 let newHeight = STARTING_HEIGHT
 
 function update() {
-    if ((colOffset += scrollSpeed) >= COLUMN_WIDTH) {
+    if ((colOffset += (scrollSpeed + scrollAccel)) >= COLUMN_WIDTH) {
         colOffset -= COLUMN_WIDTH
         colEnd = colBegin
         colBegin = colBegin.next!
-        colEnd.height = newHeight
+        // colEnd.height = newHeight
         colEnd.danger = doDanger ? nextDanger : NO_DANGER
+    }
+
+    if (pointer.dragging) {
+        const col = getColumn(pointer.x)
+        col.height = newHeight
     }
 
     updatePlayer()

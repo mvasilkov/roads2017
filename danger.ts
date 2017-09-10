@@ -1,7 +1,7 @@
 /// <reference path="roads.d.ts" />
 
-const BEFORE_DANGER = 960
-const DANGER_DURATION = 960
+const BEFORE_DANGER = 660
+const DANGER_DURATION = 940
 const DANGER_PAUSE_EASY = 2400
 const DANGER_PAUSE_HARD = 250
 
@@ -18,6 +18,8 @@ const DANGER_TABLE: [Danger] = [
 
     { a: 0, b: 100, a2: 440, b2: 100 },
     { a: 110, b: 100, a2: 330, b2: 100 },
+    { a: 0, b: 100, a2: 220, b2: 100 },
+    { a: 220, b: 100, a2: 440, b2: 100 },
 
     { a: 0, b: 144, a2: 396, b2: 144 },
 ]
@@ -29,7 +31,7 @@ let dangerPause = DANGER_PAUSE_EASY
 
 function initializeDanger() {
     let col = colBegin
-    for (let i = 0; i < COLUMN_COUNT; ++i) {
+    for (let i = COLUMN_COUNT; i; --i) {
         col.danger = NO_DANGER
         col = col.next!
     }
@@ -46,7 +48,7 @@ function scheduleDanger() {
 
 function dangerBegin() {
     doDanger = true
-    dangerTimer = setTimeout(dangerEnd, DANGER_DURATION * (0.9 + Math.random() * 0.3))
+    dangerTimer = setTimeout(dangerEnd, DANGER_DURATION * (0.9 + Math.random() * 0.2))
 }
 
 function dangerEnd() {

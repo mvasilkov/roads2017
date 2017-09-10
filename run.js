@@ -43,6 +43,7 @@ function initMainMenu() {
         music.play();
 }
 function init() {
+    scrollAccel = 0;
     initializePlayer();
     initializeDanger();
 }

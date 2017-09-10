@@ -4,6 +4,7 @@ function initializeCanvas() {
     canvas.translate(0, CANVAS_HEIGTH);
     canvas.scale(1, -1);
     canvas.translate(0.5, 0.5);
+    canvas.font = "300 24px 'Segoe UI','Helvetica Neue',sans-serif";
 }
 function paintColumn(x, col) {
     canvas.beginPath();

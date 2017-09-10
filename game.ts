@@ -38,6 +38,8 @@ function start() {
 }
 
 function gameover() {
+    document.getElementById('dist')!.innerHTML = formatDistance(distance)
+
     endScreen.style.display = 'block'
 
     aa.play('win')

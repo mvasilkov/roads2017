@@ -28,6 +28,7 @@ function start() {
     init();
 }
 function gameover() {
+    document.getElementById('dist').innerHTML = formatDistance(distance);
     endScreen.style.display = 'block';
     aa.play('win');
     if (dangerTimer) {

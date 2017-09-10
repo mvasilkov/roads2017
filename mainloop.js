@@ -2,14 +2,19 @@
 /// <reference path="roads.d.ts" />
 var colOffset = -HALF_COLUMN_WIDTH;
 var scrollSpeed = 20;
+var scrollAccel = 0;
 var newHeight = STARTING_HEIGHT;
 function update() {
-    if ((colOffset += scrollSpeed) >= COLUMN_WIDTH) {
+    if ((colOffset += (scrollSpeed + scrollAccel)) >= COLUMN_WIDTH) {
         colOffset -= COLUMN_WIDTH;
         colEnd = colBegin;
         colBegin = colBegin.next;
-        colEnd.height = newHeight;
+        // colEnd.height = newHeight
         colEnd.danger = doDanger ? nextDanger : NO_DANGER;
+    }
+    if (pointer.dragging) {
+        var col = getColumn(pointer.x);
+        col.height = newHeight;
     }
     updatePlayer();
 }

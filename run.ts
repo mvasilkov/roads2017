@@ -47,6 +47,7 @@ function initMainMenu() {
 }
 
 function init() {
+    scrollAccel = 0
     initializePlayer()
     initializeDanger()
 }

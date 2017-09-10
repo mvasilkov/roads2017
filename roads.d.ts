@@ -1,5 +1,6 @@
 /// <reference path="aaudio.ts" />
 /// <reference path="initialize.ts" />
+/// <reference path="sprites.ts" />
 /// <reference path="game.ts" />
 /// <reference path="vec2.ts" />
 /// <reference path="pointer.ts" />

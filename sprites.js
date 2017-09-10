@@ -15,14 +15,17 @@ var grass = [
 var car = [
     '    0000000000      ',
     '   000101100110     ',
-    '  00000011110010    ',
-    ' 001000011111000000 ',
-    '00221000011110001110',
-    '02222122101110002220',
-    '02222220010000002220',
+    '  00000000100010    ',
+    ' 001000000000000000 ',
+    '00221000000000001110',
+    '02222122222222222220',
+    '02222220020000222220',
     ' 000002222222210000 ',
     '      022222210     ',
     '       0000000      ',
+    '        0000        ',
+    '  00000000000000000 ',
+    '  00000000000000000 ',
 ];
 var wheel0 = [
     '  0000  ',
@@ -99,17 +102,19 @@ function makeSprite2(width, height, bitmap, colors) {
     });
 }
 var columnSprite = makeSprite(COLUMN_WIDTH, CANVAS_HEIGTH, function (canvas) {
-    canvas.scale(3, 3);
+    canvas.save();
+    canvas.scale(8, 8);
     canvas.fillStyle = GRASS_COLOR[0];
-    canvas.fillRect(0, 4, 16, CANVAS_HEIGTH - 4);
-    for (var i = 2; i < CANVAS_HEIGTH / 6; ++i) {
-        for (var j = 0; j < 8; ++j) {
+    canvas.fillRect(0, 0, 6, CANVAS_HEIGTH * 0.125);
+    for (var i = 2; i < CANVAS_HEIGTH * 0.125; ++i) {
+        for (var j = 0; j < 6; ++j) {
             canvas.fillStyle = GROUND_COLOR[(i + j) % 3];
-            canvas.fillRect(j * 2, i * 2, 2, 2);
+            canvas.fillRect(j, i, 1, 1);
         }
-        canvas.globalAlpha -= 0.011;
+        canvas.globalAlpha -= 0.0125;
     }
-    canvas.globalAlpha = 1;
+    canvas.restore();
+    canvas.scale(3, 3);
     canvas.fillStyle = GRASS_COLOR[0];
     canvas.fillRect(1, 0, 14, 1);
     canvas.fillRect(0, 1, 1, 1);
@@ -146,7 +151,7 @@ var dangerPattern = canvas.createPattern(makeSprite(COLUMN_WIDTH, COLUMN_WIDTH *
     canvas.fillRect(9, 0, 7, 1);
     canvas.fillRect(1, 4, 14, 1);
 }), 'repeat');
-var carSprite = makeSprite2(60, 30, car, CAR_COLOR);
+var carSprite = makeSprite2(60, 39, car, CAR_COLOR);
 var wheelSprites = [
     makeSprite2(24, 24, wheel0, CAR_COLOR),
     makeSprite2(24, 24, wheel1, CAR_COLOR),

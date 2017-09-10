@@ -102,7 +102,7 @@ function paintPlayer(t: number) {
 
     wn = (wn + 1) % 4
 
-    canvas.drawImage(carSprite, -33, 0)
+    canvas.drawImage(carSprite, -33, isFlying ? -9 : -12)
     canvas.drawImage(wheelSprites[wn], -36, -21)
     canvas.drawImage(wheelSprites[wn + 1], 9, -21)
     canvas.restore()

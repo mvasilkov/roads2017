@@ -1,25 +1,22 @@
 "use strict";
 /// <reference path="roads.d.ts" />
 var music = null;
-/*
 function initMusic() {
-    const synth = new sonant
-    for (let i = 0; i < 8; ++i) {
-        synth.generate(i)
+    var synth = new sonant;
+    for (var i = 0; i < 8; ++i) {
+        synth.generate(i);
     }
-    music = synth.createAudio()
-    music.loop = true
-    music.volume = 0.9
+    music = synth.createAudio();
+    music.loop = true;
+    music.volume = 0.9;
 }
-
 if (!isMobile) {
     try {
-        initMusic()
+        initMusic();
     }
     catch (err) {
     }
 }
-*/
 function initMainMenu() {
     if (isMobile)
         document.body.className = 'mobile';

@@ -105,7 +105,7 @@ var columnSprite = makeSprite(COLUMN_WIDTH, CANVAS_HEIGTH, function (canvas) {
     canvas.save();
     canvas.scale(8, 8);
     canvas.fillStyle = GRASS_COLOR[0];
-    canvas.fillRect(0, 0, 6, CANVAS_HEIGTH * 0.125);
+    canvas.fillRect(0, 2, 6, CANVAS_HEIGTH * 0.125 - 2);
     for (var i = 2; i < CANVAS_HEIGTH * 0.125; ++i) {
         for (var j = 0; j < 6; ++j) {
             canvas.fillStyle = GROUND_COLOR[(i + j) % 3];

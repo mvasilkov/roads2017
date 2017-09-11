@@ -2,7 +2,6 @@
 
 let music: HTMLAudioElement | null = null
 
-/*
 function initMusic() {
     const synth = new sonant
     for (let i = 0; i < 8; ++i) {
@@ -20,7 +19,6 @@ if (!isMobile) {
     catch (err) {
     }
 }
-*/
 
 function initMainMenu() {
     if (isMobile) document.body.className = 'mobile'

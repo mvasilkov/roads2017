@@ -117,7 +117,7 @@ const columnSprite = makeSprite(COLUMN_WIDTH, CANVAS_HEIGTH, canvas => {
     canvas.scale(8, 8)
 
     canvas.fillStyle = GRASS_COLOR[0]
-    canvas.fillRect(0, 0, 6, CANVAS_HEIGTH * 0.125)
+    canvas.fillRect(0, 2, 6, CANVAS_HEIGTH * 0.125 - 2)
 
     for (let i = 2; i < CANVAS_HEIGTH * 0.125; ++i) {
         for (let j = 0; j < 6; ++j) {

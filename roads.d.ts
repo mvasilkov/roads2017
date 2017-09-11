@@ -1,3 +1,5 @@
+/// <reference path="music/sonant.d.ts" />
+
 /// <reference path="aaudio.ts" />
 /// <reference path="initialize.ts" />
 /// <reference path="sprites.ts" />

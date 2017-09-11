@@ -23,6 +23,18 @@ function easeInOutQuad(t) {
 function clamp(x, a, b) {
     return (x < a) ? a : (x > b) ? b : x;
 }
+function shuffle(array) {
+    var i = array.length;
+    var j;
+    var t;
+    while (i) {
+        j = Math.floor(Math.random() * i);
+        --i;
+        t = array[i];
+        array[i] = array[j];
+        array[j] = t;
+    }
+}
 /* Initialization */
 var container = document.getElementById('container');
 var hcanvas = document.getElementById('canvas');

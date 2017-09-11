@@ -19,6 +19,7 @@ var DANGER_TABLE = [
     { a: 220, b: 100, a2: 440, b2: 100 },
     { a: 0, b: 144, a2: 396, b2: 144 },
 ];
+shuffle(DANGER_TABLE);
 var nextDanger = NO_DANGER;
 var doDanger = false;
 var dangerTimer = NaN;
@@ -46,7 +47,11 @@ function dangerEnd() {
     nextDanger = NO_DANGER;
     dangerTimer = setTimeout(scheduleDanger, dangerPause = Math.max(dangerPause - 200, DANGER_PAUSE_HARD));
 }
-var nd = -1;
+var nd = 0;
 function getDanger() {
-    return DANGER_TABLE[nd = (nd + 1) % DANGER_TABLE.length];
+    if (nd == DANGER_TABLE.length) {
+        nd = 0;
+        shuffle(DANGER_TABLE);
+    }
+    return DANGER_TABLE[nd++];
 }

@@ -47,6 +47,10 @@ canvas {
     width: 1920px;
 }
 
+#end {
+    background: rgba(0,0,0,0.3333);
+}
+
 #load + #home {
     display: none;
 }

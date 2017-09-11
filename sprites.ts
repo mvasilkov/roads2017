@@ -76,7 +76,8 @@ const wheel3 = [
 const GRASS_COLOR = ['#000', '#00E700', '#00C700', '#008200']
 const GROUND_COLOR = ['#422021', '#844121', '#A56121']
 const BRICK_COLOR = ['#000', '#A40000', '#CC0000', '#EF2929']
-const CAR_COLOR = ['#000', '#FFF', '#FF0080']
+const CAR_VARIANTS = ['#607D8B', '#D500F9', '#F50057']
+const CAR_COLOR = ['#000', '#FFF', CAR_VARIANTS[Math.floor(Math.random() * 3)]]
 
 function makeSprite(width: number, height: number, callback: (canvas: CanvasRenderingContext2D) => void): HTMLCanvasElement {
     const hcanvas = document.createElement('canvas')
@@ -171,7 +172,7 @@ const dangerPattern = canvas.createPattern(makeSprite(COLUMN_WIDTH, COLUMN_WIDTH
     canvas.fillRect(1, 4, 14, 1)
 }), 'repeat')
 
-const carSprite = makeSprite2(60, 39, car, CAR_COLOR)
+let carSprite = makeSprite2(60, 39, car, CAR_COLOR)
 
 const wheelSprites = [
     makeSprite2(24, 24, wheel0, CAR_COLOR),

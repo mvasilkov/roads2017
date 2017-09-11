@@ -70,7 +70,8 @@ var wheel3 = [
 var GRASS_COLOR = ['#000', '#00E700', '#00C700', '#008200'];
 var GROUND_COLOR = ['#422021', '#844121', '#A56121'];
 var BRICK_COLOR = ['#000', '#A40000', '#CC0000', '#EF2929'];
-var CAR_COLOR = ['#000', '#FFF', '#FF0080'];
+var CAR_VARIANTS = ['#607D8B', '#D500F9', '#F50057'];
+var CAR_COLOR = ['#000', '#FFF', CAR_VARIANTS[Math.floor(Math.random() * 3)]];
 function makeSprite(width, height, callback) {
     var hcanvas = document.createElement('canvas');
     hcanvas.width = width;

@@ -28,6 +28,21 @@ function clamp(x: number, a: number, b: number): number {
     return (x < a) ? a : (x > b) ? b : x
 }
 
+function shuffle(array: any[]) {
+    let i = array.length
+    let j: number
+    let t: any
+
+    while (i) {
+        j = Math.floor(Math.random() * i)
+        --i
+
+        t = array[i]
+        array[i] = array[j]
+        array[j] = t
+    }
+}
+
 /* Initialization */
 const container: HTMLElement = document.getElementById('container')!
 const hcanvas = <HTMLCanvasElement>document.getElementById('canvas')

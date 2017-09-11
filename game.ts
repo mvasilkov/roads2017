@@ -42,11 +42,21 @@ function gameover() {
 
     endScreen.style.display = 'block'
 
-    aa.play('win')
+    aa.play('die')
 
+    doDanger = false
+    nextDanger = NO_DANGER
     if (dangerTimer) {
         clearTimeout(dangerTimer)
     }
+
+    /* Randomize car color */
+    CAR_COLOR[2] = CAR_VARIANTS[Math.floor(Math.random() * 3)]
+    carSprite = makeSprite2(60, 39, car, CAR_COLOR)
+    wheelSprites[0] = wheelSprites[4] = makeSprite2(24, 24, wheel0, CAR_COLOR)
+    wheelSprites[1] = makeSprite2(24, 24, wheel1, CAR_COLOR)
+    wheelSprites[2] = makeSprite2(24, 24, wheel2, CAR_COLOR)
+    wheelSprites[3] = makeSprite2(24, 24, wheel3, CAR_COLOR)
 }
 
 function reset() {

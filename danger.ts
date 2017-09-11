@@ -24,6 +24,8 @@ const DANGER_TABLE: [Danger] = [
     { a: 0, b: 144, a2: 396, b2: 144 },
 ]
 
+shuffle(DANGER_TABLE)
+
 let nextDanger: Danger = NO_DANGER
 let doDanger = false
 let dangerTimer = NaN
@@ -57,8 +59,12 @@ function dangerEnd() {
     dangerTimer = setTimeout(scheduleDanger, dangerPause = Math.max(dangerPause - 200, DANGER_PAUSE_HARD))
 }
 
-let nd = -1
+let nd = 0
 
 function getDanger(): Danger {
-    return DANGER_TABLE[nd = (nd + 1) % DANGER_TABLE.length]
+    if (nd == DANGER_TABLE.length) {
+        nd = 0
+        shuffle(DANGER_TABLE)
+    }
+    return DANGER_TABLE[nd++]
 }

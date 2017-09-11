@@ -21,6 +21,7 @@ let targetAngle = 0
 
 let isAlive = false
 let isFlying = true
+let isJumping = true
 
 let distance = 0
 
@@ -29,7 +30,7 @@ function initializePlayer() {
     vy = 0
     normal.set(0, 1)
     angle = targetAngle = 0
-    isAlive = isFlying = true
+    isAlive = isFlying = isJumping = true
     distance = 0
 }
 
@@ -56,7 +57,8 @@ function updatePlayer() {
     if (y - R_CONTACT < yTouch) {
         b.set((t + 0.05) * COLUMN_WIDTH, lerp(col.height, col.next!.height, easeInOutQuad(t + 0.05)))
         normal.setNormal(a, b)
-        isFlying = false
+        if (isJumping) aa.play('hit')
+        isFlying = isJumping = false
         scrollAccel = clamp(scrollAccel + normal.x, -4, 2)
     }
     else isFlying = true
@@ -66,6 +68,10 @@ function updatePlayer() {
     if (y - R < yTouch) {
         vy += (yTouch + R - y) * IMPACT_FRICTION
         y = yTouch + R
+        if (vy > MAXIMUM_Y_VELOCITY * 0.5) {
+            isJumping = true
+            aa.play('jmp')
+        }
         if (vy > MAXIMUM_Y_VELOCITY) {
             vy = MAXIMUM_Y_VELOCITY
         }

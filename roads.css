@@ -43,6 +43,7 @@ canvas {
     font: 300 64px/96px 'Segoe UI', 'Helvetica Neue', sans-serif;
     height: 1080px;
     padding: 0 100px;
+    -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
     width: 1920px;
 }
@@ -107,6 +108,7 @@ h1, p, label {
     position: absolute;
     right: 0;
     top: 0;
+    -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
     width: 550px;
 }

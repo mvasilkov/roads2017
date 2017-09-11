@@ -4,4 +4,4 @@ build:
 
 .PHONY: clean
 clean:
-	rm build/{index.html,roads.{css,js},manifest.json}
+	rm -f build/{index.html,roads.{css,js},manifest.json}

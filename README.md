@@ -1,6 +1,6 @@
 # Where We're Going, We Do Need Roads #
 
-Written by [Mark Vasilkov][0] for js13kGames–2017.
+A video game for the js13kGames competition, written by [Mark Vasilkov][0] in TypeScript.
 
 ## Compatibility ##
 
